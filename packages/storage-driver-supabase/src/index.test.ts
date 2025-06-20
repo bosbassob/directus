@@ -313,7 +313,7 @@ describe('#read', () => {
 	test('Throws an error when returned stream is not a readable stream', async () => {
 		vi.mocked(fetch).mockReturnValue({ status: 200, body: undefined } as unknown as Promise<Response>);
 
-		expect(driver.read(sample.path.input, { range: sample.range })).rejects.toThrowError(
+                await expect(driver.read(sample.path.input, { range: sample.range })).rejects.toThrowError(
 			new Error(`No stream returned for file "${sample.path.input}"`),
 		);
 	});
@@ -386,7 +386,7 @@ describe('#stat', () => {
 			}),
 		} as any;
 
-		expect(driver.stat(sample.path.input)).rejects.toThrowError(new Error(`File not found`));
+                await expect(driver.stat(sample.path.input)).rejects.toThrowError(new Error(`File not found`));
 	});
 
 	test('Throws an error if storage error is returned', async () => {
@@ -397,7 +397,7 @@ describe('#stat', () => {
 			}),
 		} as any;
 
-		expect(driver.stat(sample.path.input)).rejects.toThrowError(new Error(`File not found`));
+                await expect(driver.stat(sample.path.input)).rejects.toThrowError(new Error(`File not found`));
 	});
 });
 

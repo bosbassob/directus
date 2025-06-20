@@ -207,7 +207,7 @@ describe('filter', () => {
 	test('should throw error on invalid filter', async () => {
 		const filter = { field_a: null };
 
-		await expect(async () => await sanitizeQuery({ filter }, null as any)).rejects.toThrowError(
+                await expect(sanitizeQuery({ filter }, null as any)).rejects.toThrowError(
 			'Invalid query. Invalid filter object.',
 		);
 	});
@@ -223,7 +223,7 @@ describe('filter', () => {
 	test('should throw error on invalid json', async () => {
 		const filter = '{ "field_a": }';
 
-		await expect(async () => await sanitizeQuery({ filter }, null as any)).rejects.toThrowError(
+                await expect(sanitizeQuery({ filter }, null as any)).rejects.toThrowError(
 			'Invalid query. Invalid JSON for filter object.',
 		);
 	});

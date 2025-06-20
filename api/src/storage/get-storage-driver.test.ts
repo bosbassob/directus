@@ -15,5 +15,5 @@ test('Returns imported installed driver for each supported driver', async () => 
 test('Throws error for key that is not supported', async () => {
 	const driverKey = `fake-${randWord()}`;
 
-	await expect(() => getStorageDriver(driverKey)).rejects.toThrowError(`Driver "${driverKey}" doesn't exist.`);
+        await expect(getStorageDriver(driverKey)).rejects.toThrowError(`Driver "${driverKey}" doesn't exist.`);
 });
