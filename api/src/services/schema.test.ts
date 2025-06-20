@@ -79,7 +79,7 @@ describe('Services / Schema', () => {
 
 			const service = new SchemaService({ knex: db, accountability: { role: 'test', admin: false } });
 
-			expect(service.snapshot()).rejects.toThrowError(ForbiddenError);
+                        await expect(service.snapshot()).rejects.toThrowError(ForbiddenError);
 		});
 
 		it('should return snapshot for admin user', async () => {
@@ -106,7 +106,7 @@ describe('Services / Schema', () => {
 
 			const service = new SchemaService({ knex: db, accountability: { role: 'test', admin: false } });
 
-			expect(service.apply(snapshotDiffWithHash)).rejects.toThrowError(ForbiddenError);
+                        await expect(service.apply(snapshotDiffWithHash)).rejects.toThrowError(ForbiddenError);
 			expect(vi.mocked(applyDiff)).not.toHaveBeenCalledOnce();
 		});
 
@@ -152,7 +152,7 @@ describe('Services / Schema', () => {
 		it('should throw ForbiddenError for non-admin user', async () => {
 			const service = new SchemaService({ knex: db, accountability: { role: 'test', admin: false } });
 
-			expect(service.diff(snapshotToApply, { currentSnapshot: testSnapshot, force: true })).rejects.toThrowError(
+                        await expect(service.diff(snapshotToApply, { currentSnapshot: testSnapshot, force: true })).rejects.toThrowError(
 				ForbiddenError,
 			);
 		});

@@ -64,7 +64,7 @@ test('should return main version and package versions', async () => {
 });
 
 test('should fail if main version is missing', async () => {
-	expect(() => processPackages()).rejects.toThrow(/Main version .* is missing or invalid/);
+        await expect(processPackages()).rejects.toThrow(/Main version .* is missing or invalid/);
 });
 
 test('should respect manually defined version', async () => {
@@ -79,11 +79,11 @@ test('should respect manually defined version', async () => {
 });
 
 test('should fail with manually defined version when not in prerelease mode', async () => {
-	vi.stubEnv('DIRECTUS_VERSION', '2.0.0-beta.0');
+        vi.stubEnv('DIRECTUS_VERSION', '2.0.0-beta.0');
 
-	expect(() => processPackages()).rejects.toThrow(
-		`Main version is a prerelease but changesets isn't in prerelease mode`,
-	);
+        await expect(processPackages()).rejects.toThrow(
+                `Main version is a prerelease but changesets isn't in prerelease mode`,
+        );
 });
 
 test('should work with manually defined version when in prerelease mode', async () => {

@@ -87,21 +87,21 @@ describe('authenticateConnection', () => {
 			throw new InvalidCredentialsError();
 		});
 
-		expect(() =>
-			authenticateConnection({
-				type: 'auth',
-				access_token: 'expired',
-			} as WebSocketAuthMessage),
-		).rejects.toThrow('Authentication failed.');
+                await expect(
+                        authenticateConnection({
+                                type: 'auth',
+                                access_token: 'expired',
+                        } as WebSocketAuthMessage),
+                ).rejects.toThrow('Authentication failed.');
 	});
 
 	test('Failure authentication failed', async () => {
-		expect(() =>
-			authenticateConnection({
-				type: 'auth',
-				access_token: '',
-			} as WebSocketAuthMessage),
-		).rejects.toThrow('Authentication failed.');
+                await expect(
+                        authenticateConnection({
+                                type: 'auth',
+                                access_token: '',
+                        } as WebSocketAuthMessage),
+                ).rejects.toThrow('Authentication failed.');
 	});
 });
 

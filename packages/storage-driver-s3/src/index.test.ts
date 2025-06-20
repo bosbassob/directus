@@ -371,7 +371,7 @@ describe('#read', () => {
 	test('Throws an error when returned stream is not a readable stream', async () => {
 		vi.mocked(isReadableStream).mockReturnValue(false);
 
-		expect(driver.read(sample.path.input, { range: sample.range })).rejects.toThrowError(
+                await expect(driver.read(sample.path.input, { range: sample.range })).rejects.toThrowError(
 			new Error(`No stream returned for file "${sample.path.input}"`),
 		);
 	});

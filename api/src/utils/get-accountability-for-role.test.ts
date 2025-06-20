@@ -77,13 +77,13 @@ describe('getAccountabilityForRole', async () => {
 		vi.mocked(fetchRolesTree).mockResolvedValue([]);
 		vi.mocked(fetchGlobalAccess).mockResolvedValue({ admin: false, app: false });
 
-		expect(
-			getAccountabilityForRole('456-789', {
-				accountability: null,
-				schema: {} as any,
-				database: {} as any,
-			}),
-		).rejects.toThrowErrorMatchingInlineSnapshot(
+                await expect(
+                        getAccountabilityForRole('456-789', {
+                                accountability: null,
+                                schema: {} as any,
+                                database: {} as any,
+                        }),
+                ).rejects.toThrowErrorMatchingInlineSnapshot(
 			`[Error: Configured role "456-789" isn't a valid role ID or doesn't exist.]`,
 		);
 	});
